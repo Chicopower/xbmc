@@ -5,7 +5,7 @@ WEBSITE https://chicoprog.com
 VERSION_MAJOR 19
 VERSION_MINOR 3
 VERSION_TAG
-VERSION_CODE 19.3.1
+VERSION_CODE 19.3.2
 ADDON_API 19.1.0
 ADDON_REPOS repository.xbmc.org|https://mirrors.kodi.tv
 APP_PACKAGE org.xbmc.kodi

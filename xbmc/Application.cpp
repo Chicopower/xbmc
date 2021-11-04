@@ -460,6 +460,9 @@ bool CApplication::Create(const CAppParamParser &params)
     CLog::Log(LOGINFO, "Display HDR capable is detected and Windows HDR switch is %s",
               (hdrStatus == HDR_STATUS::HDR_ON) ? "ON" : "OFF");
 #endif
+#if defined(UWP_XBOX)
+  CLog::Log(LOGINFO, "The application is running with flag UWP_XBOX");
+#endif
 #if defined(TARGET_ANDROID)
   CLog::Log(
       LOGINFO,

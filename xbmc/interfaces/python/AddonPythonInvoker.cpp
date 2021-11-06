@@ -52,13 +52,6 @@
   "environ['SSL_CERT_FILE'] = 'system/certs/cacert.pem'\n" \
   ""
 
-#define RUNSCRIPT_SETUP_ENVIROMENT_VARIABLES_UWP_XBOX \
-  "" \
-  "from os import environ\n" \
-  "environ['SSL_CERT_FILE'] = 'system/certs/cacert.pem'\n" \
-  "environ['PYTHONDONTWRITEBYTECODE'] = 'dontwritebytecodeforuwpxbox'\n" \
-  ""
-
 #define RUNSCRIPT_POSTSCRIPT \
         "print('-->Python Interpreter Initialized<--')\n" \
         ""
@@ -67,11 +60,6 @@
 
 #define RUNSCRIPT_COMPLIANT \
   RUNSCRIPT_PREAMBLE RUNSCRIPT_SETUPTOOLS_HACK RUNSCRIPT_POSTSCRIPT
-
-#elif defined(UWP_XBOX)
-
-#define RUNSCRIPT_COMPLIANT \
-  RUNSCRIPT_PREAMBLE RUNSCRIPT_SETUP_ENVIROMENT_VARIABLES_UWP_XBOX RUNSCRIPT_POSTSCRIPT
 
 #elif defined(TARGET_WINDOWS_STORE)
 

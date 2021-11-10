@@ -36,7 +36,6 @@
 #endif
 
 #include <algorithm>
-#include <xbmc/utils/URIUtils.h>
 
 // Only required for Py3 < 3.7
 PyThreadState* savestate;
@@ -500,7 +499,6 @@ bool XBPython::OnScriptInitialized(ILanguageInvoker* invoker)
     // a hack to set the PYTHONPATH
     std::string buf;
     buf = "PYTHONPATH=" + CSpecialProtocol::TranslatePath("special://xbmc/system/python/Lib");
-    CLog::Log(LOGDEBUG, "PYTHONPATH for TARGET_WINDOWS -> %s", buf);
     CEnvironment::putenv(buf);
     buf = "PYTHONOPTIMIZE=1";
     CEnvironment::putenv(buf);
@@ -512,7 +510,6 @@ bool XBPython::OnScriptInitialized(ILanguageInvoker* invoker)
 #endif
 
     std::wstring pythonHomeW;
-
     CCharsetConverter::utf8ToW(CSpecialProtocol::TranslatePath("special://xbmc/system/python"),
                            pythonHomeW);
     Py_SetPythonHome(pythonHomeW.c_str());

@@ -232,11 +232,7 @@ bool CPythonInvoker::execute(const std::string& script, const std::vector<std::w
       std::set<std::string> paths;
       getAddonModuleDeps(m_addon, paths);
       for (const auto& it : paths)
-      {
-        CLog::Log(LOGDEBUG, "CPythonInvoker(%d, %s): addPath path=%s", GetId(),
-                  m_sourceFile.c_str(), it);
         addPath(it);
-      }
     }
     else
     { // for backwards compatibility.
@@ -729,21 +725,14 @@ void CPythonInvoker::getAddonModuleDeps(const ADDON::AddonPtr& addon, std::set<s
   {
     //Check if dependency is a module addon
     ADDON::AddonPtr dependency;
-    CLog::Log(LOGDEBUG, "CPythonInvoker(%d, %s): getAddonModuleDeps it.id=%s", GetId(),
-              m_sourceFile.c_str(), it.id);
     if (CServiceBroker::GetAddonMgr().GetAddon(it.id, dependency, ADDON::ADDON_SCRIPT_MODULE,
                                                ADDON::OnlyEnabled::YES))
     {
-      CLog::Log(LOGDEBUG, "CPythonInvoker(%d, %s): getAddonModuleDeps dependency->LibPath()=%s", GetId(), m_sourceFile.c_str(), dependency->LibPath());
       std::string path = CSpecialProtocol::TranslatePath(dependency->LibPath());
-      CLog::Log(LOGDEBUG, "CPythonInvoker(%d, %s): getAddonModuleDeps path=%s", GetId(),
-                m_sourceFile.c_str(), path);
       if (paths.find(path) == paths.end())
       {
         // add it and its dependencies
         paths.insert(path);
-        CLog::Log(LOGDEBUG, "CPythonInvoker(%d, %s): getAddonModuleDeps path %s inserted", GetId(),
-                  m_sourceFile.c_str(), path);
         getAddonModuleDeps(dependency, paths);
       }
     }
